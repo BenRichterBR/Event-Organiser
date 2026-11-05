@@ -1,0 +1,181 @@
+body {
+  margin: 0;
+}
+
+#root {
+  width: 1126px;
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  border-inline: 1px solid var(--border);
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  background-color: rgba(59, 131, 204, 0.267);
+}
+
+.navbar {
+  display: flex;
+  position: top;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(39, 87, 136, 0.404);
+  padding-bottom: 15px;
+}
+
+.nav-link-group {
+  list-style-type: none;
+  display: flex;
+  margin: auto;
+  padding: 0;
+  padding-left: 10rem;
+  font-size: 30px;
+  column-gap: 30px;
+  @media (max-width: 750px) {
+    padding-left: 1rem;
+  }
+}
+
+h1,
+h2 {
+  font-weight: 500;
+}
+
+h1 {
+  font-size: 56px;
+  letter-spacing: -1.68px;
+  margin: 32px 0;
+  @media (max-width: 1024px) {
+    font-size: 36px;
+    margin: 20px 0;
+  }
+}
+
+h2 {
+  font-size: 24px;
+  line-height: 118%;
+  letter-spacing: -0.24px;
+  margin: 0 0 8px;
+  @media (max-width: 1024px) {
+    font-size: 20px;
+  }
+}
+
+p {
+  margin: 0;
+}
+
+.main-areas {
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+}
+
+.login-label {
+  margin-left: -2.5em;
+}
+
+.event-card-row {
+  display: flex;
+  justify-content: space-around;
+  padding-left: 20%;
+  padding-right: 20%;
+}
+
+.event-cards {
+  margin-bottom: 10px;
+  border: 2px solid rgba(39, 87, 136, 0.404);
+}
+
+.card-btns {
+  width: 50%;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+#new-event-display {
+  padding-top: 5rem;
+  width: 50%;
+  margin: auto;
+}
+
+table {
+  text-align: left;
+  width: 50%;
+  margin: 3rem auto auto auto;
+  font-size: 18px;
+}
+
+#accordion-container {
+  width: 80%;
+  margin: auto;
+  border: 2px solid rgba(39, 87, 136, 0.404);
+  border-radius: 8px;
+}
+
+.accordion-header {
+  font-size: 24px;
+}
+
+.accordion-body {
+  font-size: 18px;
+}
+
+label, input {
+  width: 150px;
+  margin: 0.5em;
+  margin-left: 0;
+  text-align: left;
+}
+
+input {
+  width: 200px;
+}
+
+.submit-btn {
+  margin-top: 1em;
+}
+
+#dropdown-basic {
+  width: 80px;
+}
+
+li {
+  border-bottom: 2px solid transparent;
+}
+
+li:hover {
+  border-bottom-color: black;
+}
+
+#logout-btn {
+  margin-top: 20px;
+}
+
+.error {
+  color: red;
+}
+
+.error > ul > li:hover {
+  border-bottom-color: transparent;
+}
+
+#registration-help {
+  width: 80%;
+  margin: auto;
+}
+
+.registration-help-btns {
+  margin: auto;
+}
+
+#tips-list {
+  width: 80%;
+  margin: auto;
+}
+
+#tips-list > li:hover {
+  border-bottom-color: transparent;
+}
