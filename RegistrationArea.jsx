@@ -1,0 +1,189 @@
+//import components
+import { useFormik } from 'formik';
+import { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import RegisterHelp from './RegisterHelp';
+
+//validate form input
+const validate = values => {
+
+    const errors = {};
+
+    if (!values.firstname) {
+        errors.firstname = 'Required field!';
+    } else if (values.firstname.length > 15) {
+        errors.firstname = 'Must not be more than 15 characters';
+    } else if (/^[A-Za-z]$/.test(values.firstname)) {
+        errors.firstname = 'Must only contain letters.'
+    }
+
+    if (!values.lastname) {
+        errors.lastname = 'Required field!';
+    } else if (values.lastname.length > 20) {
+        errors.lastname = 'Must not be more than 20 characters';
+    } else if (/^[A-Za-z]$/.test(values.lastname)) {
+        errors.lastname = 'Must only contain letters.'
+    }
+
+    if (!values.username) {
+        errors.username = 'Required field!'
+    } else if (values.username.length < 5) {
+        errors.username = 'Username too short!'
+    } else if (values.username.length > 15) {
+        errors.username = 'Username too long!'
+    }
+
+    if (!values.email) {
+        errors.email = 'Required field!';
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+        errors.email = 'Invalid email address'
+    }
+
+    if (!values.password) {
+        errors.password = 'Required field!';
+    } else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%#*?&])[A-Za-z\d@$!%#*?&]{8,}$/.test(values.password)) {
+        errors.password = <>Password needs to contain one of each:<ul style={{listStyleType: 'none'}}><li>upper-case letter</li><li>lower-case letter</li><li>number</li><li>special character</li></ul></>
+    } else if (values.password.length < 8) {
+        errors.password = <>Password needs to be at least 8 characters long</>
+    }
+
+    if (!values.password2) {
+        errors.password2 = 'Required field!';
+    } else if (values.password != values.password2) {
+        errors.password2 = 'Passwords don\'t match!';
+    }
+
+    return errors;
+}
+
+/**
+ * form to register a new user. registration data is kept in state to be compared against login data.
+ * also contains a help area accessible through a stateful button, which toggles the help section open or closed.
+*/
+function RegistrationArea({ setUserData }) {
+
+    const formik = useFormik({
+        initialValues: {
+            firstname: '',
+            lastname: '',
+            username: '',
+            email: '',
+            password: '',
+            password2: '',
+        },
+
+        validate,
+
+        onSubmit: values => {
+            window.alert('Thank you for registering!');
+            setUserData(values);
+        }
+    });
+
+    const [helpOpen, setHelpOpen] = useState(false);
+
+    const helpSetter = () => {
+        setHelpOpen(current => !current);
+    }
+
+    return(
+        <>
+            <div className='main-areas' id='registration-area' style={{ display: 'block' }}>
+
+                <h4>Don't have an account yet?</h4>
+
+                <form className='input-form' id='register-form' onSubmit={formik.handleSubmit}>
+                    <label htmlFor='firstname'>First name</label>
+                    <input 
+                        id='firstname'
+                        name='firstname'
+                        type='text'
+                        placeholder='required'
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.firstname}
+                    />
+                    {formik.errors.firstname && formik.touched.firstname ? <div className='error'>{formik.errors.firstname}</div> : null}
+                    <br />
+
+                    <label htmlFor='lastname'>Last name</label>
+                    <input 
+                        id='lastname'
+                        name='lastname'
+                        type='text'
+                        placeholder='required'
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.lastname}
+                    />
+                    {formik.errors.lastname && formik.touched.lastname ? <div className='error'>{formik.errors.lastname}</div> : null}
+                    <br />
+
+                    <label htmlFor='username'>Username</label>
+                    <input
+                        id='username'
+                        name='username'
+                        type='text'
+                        placeholder='required'
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.username}
+                    />
+                    {formik.errors.username && formik.touched.username ? <div className='error'>{formik.errors.username}</div> : null}
+                    <br />
+                    
+                    <label htmlFor='email'>E-mail</label>
+                    <input 
+                        id='email'
+                        name='email'
+                        type='email'
+                        placeholder='required'
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.email}
+                    />
+                    {formik.errors.email && formik.touched.email ? <div className='error'>{formik.errors.email}</div> : null}
+                    <br />
+
+                    <label>Password</label>
+                    <input 
+                        id='password'
+                        name='password'
+                        type='password'
+                        placeholder='required'
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.password}
+                    />
+                    {formik.errors.password && formik.touched.password ? <div className='error'>{formik.errors.password}</div> : null}
+                    <br />
+
+                    <label>Repeat password</label>
+                    <input 
+                        id='password2'
+                        name='password2'
+                        type='password'
+                        placeholder='required'
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.password2}
+                    />
+                    {formik.errors.password2 && formik.touched.password2 ? <div className='error'>{formik.errors.password2}</div> : null}
+                    <br />
+
+                    <Button className='submit-btn' variant='success' type='submit'>Submit</Button>
+                </form>
+
+            </div>
+
+            { helpOpen ? 
+                <RegisterHelp helpSetter={helpSetter}/> 
+                : 
+                <Button variant='secondary' className='registration-help-btns' onClick={helpSetter}>Help, I don't know what I'm doing!</Button>
+            }
+            
+        </>
+    );
+}
+
+export default RegistrationArea;
