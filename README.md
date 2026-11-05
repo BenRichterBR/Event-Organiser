@@ -1,7 +1,7 @@
 
 # Event Organiser
 
-Built as a Capstone Project for my Full-Stack Web Development course, this application allows a user, after registering and logging in, to create and view events. The events may be sorted by date and may be edited or deleted.
+Built as a second Capstone Project for my Full-Stack Web Development course, this application allows a user, after registering and logging in, to create and view events. The events may be sorted by date and may be edited or deleted.
 
 This project was built in ReactJS + Vite, and uses React-Bootstrap v5 and CSS for styling, Formik for form validation, and React Router for routing.
 
