@@ -4,13 +4,6 @@
 Built as a second Capstone Project for my Full-Stack Web Development course, this application allows a user, after registering and logging in, to create and view events. The events may be sorted by date and may be edited or deleted.
 
 This project was built in ReactJS + Vite, and uses React-Bootstrap 5 and CSS for styling, Formik for form validation, and React Router for routing.
-
-
-## Installation
-
-No installation needed. Find the project deployed at https://BenRichterBR.github.io/event-organiser/ .
-
-No information about you or your browser is collected by this application. The register and login function are an exploration of using context and state for local memory within the application and are not connected to a backend.
     
 ## Run Locally
 
